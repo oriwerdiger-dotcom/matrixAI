@@ -946,6 +946,18 @@
         .code-copy:hover { background: rgba(255,255,255,0.12); color: #38bdf8; }
         .code-block pre { margin: 0; padding: 0.8rem 1rem; overflow-x: auto; font-size: 0.86rem; line-height: 1.55; font-family: Consolas, 'Courier New', monospace; color: #e2e8f0; white-space: pre; }
 
+        /* ---------- פוטר וקרדיט ---------- */
+        .site-footer {
+            flex-shrink: 0; text-align: center; padding: 0.45rem 1rem 0.6rem; font-size: 0.74rem;
+            line-height: 1.5; color: var(--text-muted); position: relative; z-index: 5;
+        }
+        .site-footer .footer-disclaimer { opacity: 0.95; }
+        .site-footer .footer-copy { opacity: 0.75; }
+        .sb-credit {
+            text-align: center; font-size: 0.74rem; color: var(--text-muted); opacity: 0.85;
+            padding: 0.5rem 0.4rem 0.1rem; line-height: 1.5;
+        }
+
         .hidden { display: none !important; }
     </style>
 </head>
@@ -990,6 +1002,7 @@
         <div class="sb-footer">
             <button class="sb-link" onclick="openGallery()">🖼 <span id="lbl-gallery">הגלריה שלי</span></button>
             <button class="sb-link hidden" id="sb-stats-btn" onclick="openAdminModal(); switchAdminTab('stats');">📊 <span id="lbl-stats">סטטיסטיקות ומחוברים</span></button>
+            <div class="sb-credit" id="sb-credit">נוצר על ידי אורי ורדיגר</div>
         </div>
     </aside>
 
@@ -1238,6 +1251,12 @@
                 </div>
             </div>
         </main>
+
+        <!-- פוטר -->
+        <footer class="site-footer">
+            <div class="footer-disclaimer" id="footer-disclaimer">NexusMind הוא בינה מלאכותית בלבד ויכול לטעות. כדאי לוודא מידע חשוב.</div>
+            <div class="footer-copy" id="footer-copy">כל הזכויות שמורות ל-NexusMind © 2026</div>
+        </footer>
     </div>
 
     <script>
@@ -3564,6 +3583,9 @@
         function updateNewLabels() {
             const he = currentLang === 'he';
             const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+            set('sb-credit', he ? 'נוצר על ידי אורי ורדיגר' : 'Created by Ori Werdiger');
+            set('footer-disclaimer', he ? 'NexusMind הוא בינה מלאכותית בלבד ויכול לטעות. כדאי לוודא מידע חשוב.' : 'NexusMind is only an AI and can make mistakes. Double-check important information.');
+            set('footer-copy', he ? 'כל הזכויות שמורות ל-NexusMind © 2026' : 'All rights reserved to NexusMind © 2026');
             set('lbl-custom-bg', he ? 'רקע מותאם אישית:' : 'Custom background:');
             set('lbl-bg-opacity', he ? 'בהירות הרקע:' : 'Background brightness:');
             set('btn-save-bg', he ? 'החל רקע' : 'Apply background');
